@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#faf8f5">
+    <title>2026 金子萱定制 · 高考志愿查询</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>2026 金子萱定制 · 高考志愿查询</h1>
+            <p class="subtitle">浙江大学 · 南京大学 · 中国人民大学 · 北航 · 中科大 · 上海财经 · 东南大学 ｜ 综评五校</p>
+        </div>
+
+        <!-- ====== 模式切换 ====== -->
+        <div class="mode-switch">
+            <button class="mode-btn active" onclick="switchMode('parallel')" id="mode-parallel">
+                <span class="mode-icon">📚</span>
+                <span class="mode-label">平行志愿</span>
+                <span class="mode-badge">7校 96专业</span>
+            </button>
+            <button class="mode-btn" onclick="switchMode('zongping')" id="mode-zongping">
+                <span class="mode-icon">🎯</span>
+                <span class="mode-label">综评招生</span>
+                <span class="mode-badge">5校</span>
+            </button>
+        </div>
+
+        <!-- ====== 平行志愿模块 ====== -->
+        <div id="module-parallel" class="module-content active">
+
+            <div class="search-section">
+                <div class="search-wrapper">
+                    <input type="text" id="pSearch" placeholder="搜索学校或专业名称…" autocomplete="off">
+                    <button class="search-clear search-clear-p" onclick="clearP()">✕</button>
+                    <button class="search-btn-p" onclick="pSearch()">搜索</button>
+                </div>
+            </div>
+
+            <div class="tabs" id="pTabs">
+                <button class="tab-button active" onclick="pShowTab('all')">全部</button>
+                <button class="tab-button" onclick="pShowTab('680分及以上')">680+</button>
+                <button class="tab-button" onclick="pShowTab('670-679分')">670–679</button>
+                <button class="tab-button" onclick="pShowTab('660-669分')">660–669</button>
+                <button class="tab-button" onclick="pShowTab('650-659分')">650–659</button>
+            </div>
+
+            <div class="quick-actions">
+                <button class="quick-btn" onclick="pQuick('人工智能')">AI 方向</button>
+                <button class="quick-btn" onclick="pQuick('计算机')">计算机</button>
+                <button class="quick-btn" onclick="pQuick('金融')">金融经济</button>
+                <button class="quick-btn" onclick="pQuick('芯片')">芯片 / 微电子</button>
+                <button class="quick-btn" onclick="pQuick('医学')">医学</button>
+            </div>
+
+            <div class="filter-section">
+                <label>按学校筛选</label>
+                <select id="pSchoolFilter" onchange="pFilterSchool()">
+                    <option value="">全部学校</option>
+                    <option value="浙江大学">浙江大学</option>
+                    <option value="南京大学">南京大学</option>
+                    <option value="中国人民大学">中国人民大学</option>
+                    <option value="北京航空航天大学">北京航空航天大学</option>
+                    <option value="中国科学技术大学">中国科学技术大学</option>
+                    <option value="上海财经大学">上海财经大学</option>
+                    <option value="东南大学">东南大学</option>
+                    <option value="北京航空航天大学(杭州国际校园)">北航（杭州国际）</option>
+                </select>
+            </div>
+
+            <div class="result-bar">
+                <span class="result-count" id="pResultCount"></span>
+                <button class="sort-toggle" id="pSortToggle" onclick="pToggleSort()">按分数排序</button>
+            </div>
+
+            <div id="pContent"></div>
+        </div>
+
+        <!-- ====== 综评模块 ====== -->
+        <div id="module-zongping" class="module-content">
+
+            <div class="search-section">
+                <div class="search-wrapper">
+                    <input type="text" id="zSearch" placeholder="搜索学校、专业或特色班…" autocomplete="off">
+                    <button class="search-clear search-clear-z" onclick="clearZ()">✕</button>
+                    <button class="search-btn-z" onclick="zSearch()">搜索</button>
+                </div>
+            </div>
+
+            <div class="tabs" id="zTabs"></div>
+
+            <div class="result-bar">
+                <span class="result-count" id="zResultCount"></span>
+            </div>
+
+            <div id="zContent"></div>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 金子萱定制 · 数据来源于各高校官方招生网站 · 仅供参考</p>
+        </div>
+    </div>
+
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script src="data.js"></script>
+    <script src="data_zongping.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
